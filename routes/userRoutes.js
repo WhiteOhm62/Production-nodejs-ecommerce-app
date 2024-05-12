@@ -14,23 +14,23 @@ import { singleUpload } from "../middlewares/multer.js";
 import { rateLimit } from "express-rate-limit";
 
 // RATE LIMITER
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-  standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
-  legacyHeaders: true, // Disable the `X-RateLimit-*` headers.
-  // store: ... , // Use an external store for consistency across multiple server instances.
-});
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+//   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+//   legacyHeaders: true, // Disable the `X-RateLimit-*` headers.
+//   // store: ... , // Use an external store for consistency across multiple server instances.
+// });
 
 //router object
 const router = express.Router();
 
 //routes
 // register
-router.post("/register", limiter, registerController);
+router.post("/register",  registerController);
 
 //login
-router.post("/login", limiter, loginController);
+router.post("/login", loginController);
 
 //profile
 router.get("/profile", isAuth, getUserProfileController);
